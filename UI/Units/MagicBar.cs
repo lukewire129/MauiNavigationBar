@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Xaml.Controls.Primitives;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace MauiNavigationBar.UI.Units;
 
@@ -28,11 +27,12 @@ public class MagicBar : TemplatedView
     }
 
     Grid _container;
+    Grid _circle;
     protected override void OnApplyTemplate()
     {
         base.OnApplyTemplate ();
-
-		_container = GetTemplateChild ("PART_Grd") as Grid;
+        _circle = GetTemplateChild ("PART_Circle") as Grid;
+        _container = GetTemplateChild ("PART_Grd") as Grid;
     }
 
     void UpdatetNodes()
@@ -51,6 +51,7 @@ public class MagicBar : TemplatedView
         {
             if (!_container.Children.Contains (childNode))
             {
+                childNode.index = j;
                 Grid.SetColumn (childNode, j++);
                 UpdateTreeViewNodes (childNode);
                 _container.Children.Add (childNode);
@@ -84,6 +85,9 @@ public class MagicBar : TemplatedView
         selectedItem.ChangeSelected(isSelected);
 
         SelectedItem = selectedItem;
+
+
+        _circle.TranslateTo (selectedItem.index * 80,0);
     }
 
     void UnSelectItems(MagicBarItems treeViewNodes)

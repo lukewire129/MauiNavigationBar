@@ -1,4 +1,6 @@
-﻿namespace MauiNavigationBar.Animations.Extention
+﻿using Microsoft.Maui.Controls.Shapes;
+
+namespace MauiNavigationBar.Animations.Extention
 {
     public static class BrushExtensions
     {
@@ -13,7 +15,7 @@
             }
         }
 
-        public static void CancelAnimation(this VisualElement self)
+        public static void CancelAnimation(this Shape self)
         {
             self.AbortAnimation ("BrushTo");
         }

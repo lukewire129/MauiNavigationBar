@@ -13,7 +13,7 @@
     </Style>
     <Style x:Key="Bar" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#DDDDDD" />
-        <Setter Property="Margin" Value="0,40, 0, 0" />
+        <Setter Property="Margin" Value="0, 40, 0, 0" />
         <Setter Property="StrokeThickness" Value="0" />
         <Setter Property="StrokeShape">
             <RoundRectangle CornerRadius="10" />
@@ -24,7 +24,7 @@
         <Setter Property="WidthRequest" Value="100" />
         <Setter Property="HeightRequest" Value="100" />
         <Setter Property="Fill" Value="#222222" />
-        <Setter Property="Margin" Value="-10, 40, -10, -1" />
+        <Setter Property="Margin" Value="-10, 0, -10, -1" />
     </Style>
     <Style TargetType="{x:Type units:MagicBar}">
         <Setter Property="WidthRequest" Value="440" />
@@ -35,13 +35,16 @@
                 <Grid>
                     <Border Style="{StaticResource Bar}" />
                     <Grid Margin="20,0,20,0">
-                        <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
-                            <Path Style="{StaticResource Arc}" />
+                        <Grid
+                            x:Name="PART_Circle"
+                            Margin="0,-40,0,0"
+                            HorizontalOptions="Start"
+                            Style="{StaticResource Circle}">
                             <Ellipse Fill="#222222" />
                             <Ellipse Margin="6" Fill="CadetBlue" />
                         </Grid>
                     </Grid>
-                    <Grid x:Name="PART_Grd" Padding="20,40,20,0" />
+                    <Grid x:Name="PART_Grd" Padding="20,20,20,0" />
                 </Grid>
             </ControlTemplate>
         </Setter>

@@ -1,4 +1,5 @@
 ﻿using AlohaKit.Animations;
+using AlohaKit.Animations.Triggers;
 using MauiNavigationBar.Animations;
 using MauiNavigationBar.Helper;
 
@@ -26,6 +27,8 @@ public class MagicBarItem :TemplatedView
                                                             typeof (Type),
                                                             typeof (MagicBarItem),
                                                             default (Type));
+
+    public int index { get; set; }
     public Type Type
     {
         get => (Type)GetValue (TypeProperty);
@@ -64,10 +67,10 @@ public class MagicBarItem :TemplatedView
 
         _icon = GetTemplateChild ("PART_Icon") as Microsoft.Maui.Controls.Shapes.Path;
         _text = GetTemplateChild ("PART_Text") as Label;
-        //IconSelectedSB ();
-        //IconUnSelectedSB ();
-        //TextSelectedSB ();
-        //TextUnSelectedSB ();
+        IconSelectedSB ();
+        IconUnSelectedSB ();
+        TextSelectedSB ();
+        TextUnSelectedSB ();
     }
 
     StoryBoard iconSelectedSB;
@@ -82,7 +85,6 @@ public class MagicBarItem :TemplatedView
         var textGesturedTap = new TapGestureRecognizer ();
         textGesturedTap.Tapped += OnTextTapped;
         this.GestureRecognizers.Add (textGesturedTap);
-        
     }
 
     void OnTextTapped(object sender, EventArgs e)
@@ -95,14 +97,14 @@ public class MagicBarItem :TemplatedView
     {
         this.IsSelected = select;
 
-        //if (IsSelected)
-        //{
-        //    Select ();
-        //}
-        //else
-        //{
-        //    UnSelect ();
-        //}
+        if (IsSelected)
+        {
+            Select ();
+        }
+        else
+        {
+            UnSelect ();
+        }
     }
     void UpdateCurrent()
     {
@@ -112,16 +114,7 @@ public class MagicBarItem :TemplatedView
         _magicBar?.UpdateSelectedItem (this, IsSelected);
     }
 
-    private void IconSelectedSB()
-    {
-        FillAnimation animation = new FillAnimation ();
-        animation.ToColor = new SolidColorBrush(Color.FromArgb ("#333333"));
-        animation.Duration = "500";
-
-        iconSelectedSB = new StoryBoard ();
-        iconSelectedSB.Target = _icon;
-        iconSelectedSB.Animations.Add (animation);
-    }
+    
 
     private void Select()
     {
@@ -133,37 +126,75 @@ public class MagicBarItem :TemplatedView
         iconUnSelectedSB.Begin ();
         textUnSelectedSB.Begin ();
     }
+    private void IconSelectedSB()
+    {
+        MarginAnimation MarginAnimation = new MarginAnimation ();
+        MarginAnimation.Target = _icon;
+        MarginAnimation.To = new Thickness(15, -65, 0, 0);
+        MarginAnimation.Duration = "500";
+
+        FillAnimation animation = new FillAnimation ();
+        animation.Target = _icon;
+        animation.ToColor = new SolidColorBrush (Color.FromArgb ("#333333"));
+        animation.Duration = "500";
+
+        iconSelectedSB = new StoryBoard ();
+        iconSelectedSB.Target = _icon;
+        iconSelectedSB.Animations.Add (animation);
+        iconSelectedSB.Animations.Add (MarginAnimation);
+    }
+
     private void IconUnSelectedSB()
     {
+        MarginAnimation MarginAnimation = new MarginAnimation ();
+        MarginAnimation.Target = _icon;
+        MarginAnimation.To = new Thickness (15, 0, 0, 0);
+        MarginAnimation.Duration = "500";
+
         FillAnimation animation = new FillAnimation ();
+        animation.Target = _icon;
         animation.ToColor = new SolidColorBrush (Color.FromArgb ("#44333333"));
         animation.Duration = "500";
 
         iconUnSelectedSB = new StoryBoard ();
         iconUnSelectedSB.Target = _icon;
         iconUnSelectedSB.Animations.Add (animation);
+        iconUnSelectedSB.Animations.Add (MarginAnimation);
     }
 
     private void TextSelectedSB()
     {
-        ColorAnimation animation = new ColorAnimation ();
+        MarginAnimation MarginAnimation = new MarginAnimation ();
+        MarginAnimation.Target = _text;
+        MarginAnimation.To = new Thickness (0, 65, 0, 0);
+        MarginAnimation.Duration = "500";
+
+        TextColorAnimation animation = new TextColorAnimation ();
+        animation.Target = _text;
         animation.ToColor =Color.FromArgb ("#333333");
         animation.Duration = "500";
 
         textSelectedSB = new StoryBoard ();
         textSelectedSB.Target = _text;
         textSelectedSB.Animations.Add (animation);
+        textSelectedSB.Animations.Add (MarginAnimation);
     }
 
     private void TextUnSelectedSB()
     {
-        ColorAnimation animation = new ColorAnimation ();
-        animation.ToColor = Color.FromArgb ("#00000000");
-        
+        MarginAnimation MarginAnimation = new MarginAnimation ();
+        MarginAnimation.Target = _text;
+        MarginAnimation.To = new Thickness (0, 80, 0, 0);
+        MarginAnimation.Duration = "500";
+
+        TextColorAnimation animation = new TextColorAnimation ();
+        animation.Target = _text;
+        animation.ToColor = Color.FromArgb ("#00000000");        
         animation.Duration = "500";
 
         textUnSelectedSB = new StoryBoard ();
         textUnSelectedSB.Target = _text;        
         textUnSelectedSB.Animations.Add (animation);
+        textUnSelectedSB.Animations.Add (MarginAnimation);
     }
 }
