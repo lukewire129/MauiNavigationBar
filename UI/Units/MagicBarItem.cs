@@ -85,6 +85,16 @@ public class MagicBarItem :TemplatedView
         var textGesturedTap = new TapGestureRecognizer ();
         textGesturedTap.Tapped += OnTextTapped;
         this.GestureRecognizers.Add (textGesturedTap);
+        this.Loaded += MagicBarItem_Loaded;
+    }
+
+    private void MagicBarItem_Loaded(object? sender, EventArgs e)
+    {
+        if (IsSelected)
+        {
+            Select ();
+            UpdateCurrent ();
+        }
     }
 
     void OnTextTapped(object sender, EventArgs e)

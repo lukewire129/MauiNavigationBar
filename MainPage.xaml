@@ -5,51 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:units="clr-namespace:MauiNavigationBar.UI.Units"
     Background="#222222">
-    <!--<ContentPage.Resources>
-    <Style x:Key="Bar" TargetType="{x:Type Border}">
-    <Setter Property="WidthRequest" Value="440" />
-    <Setter Property="HeightRequest" Value="80" />
-    <Setter Property="Background" Value="#DDDDDD" />
-    <Setter Property="Margin" Value="0, 40, 0, 0" />
-    <Setter Property="StrokeThickness" Value="0" />
-    <Setter Property="StrokeShape">
-    <RoundRectangle CornerRadius="10" />
-    </Setter>
-    </Style>
-    <Style x:Key="MagicBar" TargetType="{x:Type ContentView}">
-    <Setter Property="WidthRequest" Value="440" />
-    <Setter Property="HeightRequest" Value="120" />
-    <Setter Property="Background" Value="Transparent" />
-    <Setter Property="ControlTemplate">
-    <Setter.Value>
-    <Grid>
-    <Grid.Clip>
-    <RoundRectangleGeometry Rect="0, 0, 400, 120" />
-    </Grid.Clip>
-    <Border Background="Blue" Style="{DynamicResource Bar}" />
-
-    -->
-    <!--<Canvas Margin="20,0,20,0">
-    <Grid x:Name="PART_Circle" Style="{StaticResource Circle}">
-    <Path Style="{StaticResource Arc}" />
-    <Ellipse Fill="#222222" />
-    <Ellipse Margin="6" Fill="CadetBlue" />
-    </Grid>
-    </Canvas>-->
-    <!--
-    <HorizontalStackLayout Margin="20,40,20,0" Spacing="20">
-    <Label Text="hihi" />
-    <Label Text="hihi" />
-    <Label Text="hihi" />
-    <Label Text="hihi" />
-    <Label Text="hihi" />
-    </HorizontalStackLayout>
-
-    </Grid>
-    </Setter.Value>
-    </Setter>
-    </Style>
-    </ContentPage.Resources>-->
 
     <units:MagicBar HeightRequest="120" WidthRequest="440">
         <units:MagicBarItems>

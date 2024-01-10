@@ -33,6 +33,7 @@ public class MagicBar : TemplatedView
         base.OnApplyTemplate ();
         _circle = GetTemplateChild ("PART_Circle") as Grid;
         _container = GetTemplateChild ("PART_Grd") as Grid;
+
     }
 
     void UpdatetNodes()
