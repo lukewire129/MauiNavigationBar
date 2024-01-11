@@ -6,12 +6,12 @@ namespace MauiNavigationBar.UI.Units;
 
 public class MagicBarItems : Element, IList<MagicBarItem>, INotifyCollectionChanged
 {
-    readonly ObservableCollection<MagicBarItem> _treeViewNodes;
+    readonly ObservableCollection<MagicBarItem> _items;
 
-    public MagicBarItems(IEnumerable<MagicBarItem> treeViewNodes)
+    public MagicBarItems(IEnumerable<MagicBarItem> items)
     {
-        _treeViewNodes = new ObservableCollection<MagicBarItem> (treeViewNodes) ?? throw new ArgumentNullException (nameof (treeViewNodes));
-        _treeViewNodes.CollectionChanged += OnTreeViewNodesChanged;
+        _items = new ObservableCollection<MagicBarItem> (items) ?? throw new ArgumentNullException (nameof (items));
+        _items.CollectionChanged += OnItemsChanged;
     }
     public MagicBarItems() : this (Enumerable.Empty<MagicBarItem> ())
     {
@@ -20,63 +20,63 @@ public class MagicBarItems : Element, IList<MagicBarItem>, INotifyCollectionChan
 
     public event NotifyCollectionChangedEventHandler CollectionChanged
     {
-        add { _treeViewNodes.CollectionChanged += value; }
-        remove { _treeViewNodes.CollectionChanged -= value; }
+        add { _items.CollectionChanged += value; }
+        remove { _items.CollectionChanged -= value; }
     }
 
     public MagicBarItem this[int index]
     {
-        get => _treeViewNodes.Count > index ? _treeViewNodes[index] : null;
-        set => _treeViewNodes[index] = value;
+        get => _items.Count > index ? _items[index] : null;
+        set => _items[index] = value;
     }
 
-    public int Count => _treeViewNodes.Count;
+    public int Count => _items.Count;
 
     public bool IsReadOnly => false;
 
     public void Add(MagicBarItem item)
     {
-        _treeViewNodes.Add (item);
+        _items.Add (item);
     }
 
     public void Clear()
     {
-        _treeViewNodes.Clear ();
+        _items.Clear ();
     }
 
     public bool Contains(MagicBarItem item)
     {
-        return _treeViewNodes.Contains (item);
+        return _items.Contains (item);
     }
 
     public void CopyTo(MagicBarItem[] array, int arrayIndex)
     {
-        _treeViewNodes.CopyTo (array, arrayIndex);
+        _items.CopyTo (array, arrayIndex);
     }
 
     public IEnumerator<MagicBarItem> GetEnumerator()
     {
-        return _treeViewNodes.GetEnumerator ();
+        return _items.GetEnumerator ();
     }
 
     public int IndexOf(MagicBarItem item)
     {
-        return _treeViewNodes.IndexOf (item);
+        return _items.IndexOf (item);
     }
 
     public void Insert(int index, MagicBarItem item)
     {
-        _treeViewNodes.Insert (index, item);
+        _items.Insert (index, item);
     }
 
     public bool Remove(MagicBarItem item)
     {
-        return _treeViewNodes.Remove (item);
+        return _items.Remove (item);
     }
 
     public void RemoveAt(int index)
     {
-        _treeViewNodes.RemoveAt (index);
+        _items.RemoveAt (index);
     }
 
     protected override void OnBindingContextChanged()
@@ -85,11 +85,11 @@ public class MagicBarItems : Element, IList<MagicBarItem>, INotifyCollectionChan
 
         object bc = BindingContext;
 
-        foreach (BindableObject item in _treeViewNodes)
+        foreach (BindableObject item in _items)
             SetInheritedBindingContext (item, bc);
     }
 
-    void OnTreeViewNodesChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+    void OnItemsChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
     {
         if (notifyCollectionChangedEventArgs.NewItems == null)
             return;
@@ -102,6 +102,6 @@ public class MagicBarItems : Element, IList<MagicBarItem>, INotifyCollectionChan
 
     IEnumerator IEnumerable.GetEnumerator()
     {
-        return _treeViewNodes.GetEnumerator ();
+        return _items.GetEnumerator ();
     }
 }
