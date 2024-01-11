@@ -17,7 +17,7 @@
 - TemplatedView를 활용하여 ListBox와 ListBoxItem 유사 구현체 개발
 - 개발된 구성 요소를 통해 BottomTabs 구현
 
-###프로젝트의 의의
+### 프로젝트의 의의
 - MAUI의 제한된 UI 컴포넌트를 창의적으로 활용
 - 개발자 커뮤니티에 유용한 참고자료 제공
 - 유사한 UI 문제를 해결하는 데 도움
