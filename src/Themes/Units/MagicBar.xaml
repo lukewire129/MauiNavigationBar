@@ -45,7 +45,7 @@
                     <Grid x:Name="PART_Grd">
                         <Grid.Padding>
                             <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="Window" Value="20,20,20, 0" />
+                                <On Platform="UWP" Value="20,20,20, 0" />
                                 <On Platform="Android" Value="20,40,20, 0" />
                             </OnPlatform>
                         </Grid.Padding>
