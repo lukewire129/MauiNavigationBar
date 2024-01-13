@@ -1,5 +1,4 @@
 ﻿using AlohaKit.Animations;
-using AlohaKit.Animations.Triggers;
 using MauiNavigationBar.Animations;
 using MauiNavigationBar.Helper;
 
@@ -130,6 +129,7 @@ public class MagicBarItem :TemplatedView
     {
         iconSelectedSB.Begin ();
         textSelectedSB.Begin ();
+
     }
     private void UnSelect()
     {
@@ -176,6 +176,7 @@ public class MagicBarItem :TemplatedView
     {
         MarginAnimation MarginAnimation = new MarginAnimation ();
         MarginAnimation.Target = _text;
+
         MarginAnimation.To = new Thickness (0, 65, 0, 0);
         MarginAnimation.Duration = "500";
 
@@ -199,11 +200,11 @@ public class MagicBarItem :TemplatedView
 
         TextColorAnimation animation = new TextColorAnimation ();
         animation.Target = _text;
-        animation.ToColor = Color.FromArgb ("#00000000");        
+        animation.ToColor = Color.FromArgb ("#00000000");
         animation.Duration = "500";
 
         textUnSelectedSB = new StoryBoard ();
-        textUnSelectedSB.Target = _text;        
+        textUnSelectedSB.Target = _text;
         textUnSelectedSB.Animations.Add (animation);
         textUnSelectedSB.Animations.Add (MarginAnimation);
     }

@@ -5,11 +5,11 @@ namespace MauiNavigationBar.UI.Units;
 [ContentProperty(nameof (Items))]
 public class MagicBar : TemplatedView
 {
-	public static readonly BindableProperty ItemsProperty = BindableProperty.Create (nameof (Items), typeof (MagicBarItems), typeof (MagicBar), default (MagicBarItems), propertyChanged: OnRootNodesChanged);
+	public static readonly BindableProperty ItemsProperty = BindableProperty.Create (nameof (Items), typeof (MagicBarItems), typeof (MagicBar), default (MagicBarItems), propertyChanged: OnItemsChanged);
 
-    static void OnRootNodesChanged(BindableObject bindable, object oldValue, object newValue)
+    static void OnItemsChanged(BindableObject bindable, object oldValue, object newValue)
     {
-        (bindable as MagicBar)?.UpdatetNodes ();
+        (bindable as MagicBar)?.UpdateItems ();
     }
     public MagicBarItems Items
 	{
@@ -36,7 +36,7 @@ public class MagicBar : TemplatedView
 
     }
 
-    void UpdatetNodes()
+    void UpdateItems()
     {
         if (Items == null || Items.Count == 0)
             return;
@@ -48,32 +48,28 @@ public class MagicBar : TemplatedView
         }
         this._container.ColumnDefinitions = new ColumnDefinitionCollection (def.ToArray());
         int j = 0;
-        foreach (var childNode in Items)
+        foreach (var child in Items)
         {
-            if (!_container.Children.Contains (childNode))
+            if (!_container.Children.Contains (child))
             {
-                childNode.index = j;
-                Grid.SetColumn (childNode, j++);
-                UpdateTreeViewNodes (childNode);
-                _container.Children.Add (childNode);
+                child.index = j;
+                Grid.SetColumn (child, j++);
+                UpdateViewItem (child);
+                _container.Children.Add (child);
             }
         }
     }
 
-    void UpdateTreeViewNodes(MagicBarItem treeViewNode)
+    void UpdateViewItem(MagicBarItem childern)
     {
-        UpdateTreeViewNode (treeViewNode);
-    }
-
-    void UpdateTreeViewNode(MagicBarItem treeViewNode)
-    {
-        if (treeViewNode == null)
+        if (childern == null)
             return;
     }
 
     [EditorBrowsable (EditorBrowsableState.Never)]
     internal void SendItemTapped(TappedEventArgs args)
     {
+
     }
 
     [EditorBrowsable (EditorBrowsableState.Never)]
@@ -91,11 +87,11 @@ public class MagicBar : TemplatedView
         _circle.TranslateTo (selectedItem.index * 80,0);
     }
 
-    void UnSelectItems(MagicBarItems treeViewNodes)
+    void UnSelectItems(MagicBarItems items)
     {
-        foreach (var childNode in treeViewNodes)
+        foreach (var child in items)
         {
-            childNode.ChangeSelected (false);
+            child.ChangeSelected (false);
         }
     }
 }

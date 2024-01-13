@@ -10,7 +10,7 @@
         <Setter Property="ControlTemplate">
             <ControlTemplate>
                 <Grid HeightRequest="120">
-                    <Grid HorizontalOptions="Center">
+                    <Grid x:Name="PART_IconArea" HorizontalOptions="Center">
                         <Path
                             x:Name="PART_Icon"
                             Margin="15,0,0,0"

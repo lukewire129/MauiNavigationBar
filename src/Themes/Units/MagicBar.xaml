@@ -10,6 +10,8 @@
     <Style x:Key="Circle" TargetType="{x:Type Grid}">
         <Setter Property="WidthRequest" Value="80" />
         <Setter Property="HeightRequest" Value="80" />
+        <Setter Property="Margin" Value="0, -40,0,0" />
+        <Setter Property="HorizontalOptions" Value="Start" />
     </Style>
     <Style x:Key="Bar" TargetType="{x:Type Border}">
         <Setter Property="Background" Value="#DDDDDD" />
@@ -40,15 +42,18 @@
                             Margin="0,-40,0,0"
                             HorizontalOptions="Start"
                             Style="{StaticResource Circle}">
-                            <Path
-                                Fill="#222222"
-                                Style="{StaticResource Arc}"
-                                TranslationY="49" />
                             <Ellipse Fill="#222222" />
                             <Ellipse Margin="6" Fill="CadetBlue" />
                         </Grid>
                     </Grid>
-                    <Grid x:Name="PART_Grd" Padding="20,20,20,0" />
+                    <Grid x:Name="PART_Grd">
+                        <Grid.Padding>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="UWP" Value="20,20,20, 0" />
+                                <On Platform="Android" Value="20,40,20, 0" />
+                            </OnPlatform>
+                        </Grid.Padding>
+                    </Grid>
                 </Grid>
             </ControlTemplate>
         </Setter>
