@@ -24,5 +24,4 @@
 
 MAUI 개발자 커뮤니티에 이 프로젝트가 유용한 인사이트와 실질적인 해결 방법을 제공하기를 바랍니다. 프로젝트에 대한 피드백과 기여는 언제나 환영합니다.
 
-https://github.com/lukewire129/MauiNavigationBar/assets/54387261/b11cc097-3f6e-4376-8309-c74384a1bd43
-
+![KakaoTalk_20240113_193330953](https://github.com/lukewire129/MauiNavigationBar/assets/54387261/1385276f-fc28-4ab4-b5a1-e955f4f3d080)
