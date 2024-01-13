@@ -42,7 +42,14 @@
                             Margin="0,-40,0,0"
                             HorizontalOptions="Start"
                             Style="{StaticResource Circle}">
-                            <Path Style="{StaticResource Arc}" TranslationY="49" />
+                            <Path Style="{StaticResource Arc}">
+                                <Path.TranslationY>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="WinUI" Value="49" />
+                                        <On Platform="Android" Value="49" />
+                                    </OnPlatform>
+                                </Path.TranslationY>
+                            </Path>
                             <Ellipse Fill="#222222" />
                             <Ellipse Margin="6" Fill="CadetBlue" />
                         </Grid>
@@ -50,7 +57,7 @@
                     <Grid x:Name="PART_Grd">
                         <Grid.Padding>
                             <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="UWP" Value="20,20,20, 0" />
+                                <On Platform="WinUI" Value="20,20,20, 0" />
                                 <On Platform="Android" Value="20,40,20, 0" />
                             </OnPlatform>
                         </Grid.Padding>
