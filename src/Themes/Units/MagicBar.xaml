@@ -42,6 +42,7 @@
                             Margin="0,-40,0,0"
                             HorizontalOptions="Start"
                             Style="{StaticResource Circle}">
+                            <Path Style="{StaticResource Arc}" TranslationY="49" />
                             <Ellipse Fill="#222222" />
                             <Ellipse Margin="6" Fill="CadetBlue" />
                         </Grid>
